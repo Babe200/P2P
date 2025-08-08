@@ -14,6 +14,7 @@
             --dark: #1a202c;
             --success: #38a169;
             --warning: #dd6b20;
+            --info: #3182ce;
         }
         
         * {
@@ -59,6 +60,17 @@
             color: #cbd5e0;
             max-width: 800px;
             margin: 0 auto;
+        }
+        
+        .profit-badge {
+            background: var(--info);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.1rem;
         }
         
         /* نظام التسعير */
@@ -141,6 +153,18 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold);
         }
         
         .price-box h3 {
@@ -153,12 +177,17 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: white;
+            margin-bottom: 10px;
         }
         
         .price-box .note {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #a0aec0;
-            margin-top: 5px;
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border: 1px dashed var(--info);
         }
         
         /* حدود التداول */
@@ -173,6 +202,18 @@
             background: rgba(45, 55, 72, 0.5);
             padding: 20px;
             border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .limit-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
         }
         
         .limit-box h3 {
@@ -185,6 +226,16 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: white;
+            margin-bottom: 10px;
+        }
+        
+        .limit-box .note {
+            font-size: 1rem;
+            color: #a0aec0;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border: 1px dashed var(--info);
         }
         
         /* مثال توضيحي */
@@ -209,6 +260,7 @@
         
         .example p {
             margin-bottom: 10px;
+            line-height: 1.8;
         }
         
         .example .calc {
@@ -217,6 +269,29 @@
             border-radius: 8px;
             margin-top: 15px;
             font-family: monospace;
+            position: relative;
+        }
+        
+        .profit-display {
+            background: var(--info);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            position: absolute;
+            top: -12px;
+            left: 15px;
+        }
+        
+        .flexibility {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin: 0 5px;
         }
         
         /* فوتر الموقع */
@@ -333,26 +408,29 @@
             </div>
             
             <h1>نظام توحيد أسعار تداول USDT في موريتانيا</h1>
-            <p>دليل توضيحي للتجار - أسعار موحدة - حدود تداول واضحة - نظام عادل للجميع</p>
+            <p>دليل توضيحي للتجار - أسعار مرجعية - حدود تداول واضحة - مرونة في التنفيذ</p>
+            <div class="profit-badge">
+                <i class="fa-solid fa-hand-point-up"></i> نظام مرن يسمح بالتداول ضمن الحدود المحددة
+            </div>
         </header>
         
         <div class="system-rules">
-            <h2><i class="fa-solid fa-scale-balanced"></i> المبادئ الأساسية للنظام</h2>
+            <h2><i class="fa-solid fa-scale-balanced"></i> مبادئ النظام المرن</h2>
             <div class="rules-grid">
                 <div class="rule-card">
                     <i class="fa-solid fa-1"></i>
-                    <h3>توحيد الأسعار</h3>
-                    <p>أسعار موحدة لجميع التجار حسب حجم الصفقة</p>
+                    <h3>أسعار مرجعية</h3>
+                    <p>أسعار أساسية للتوجيه مع السماح بالمرونة</p>
                 </div>
                 <div class="rule-card">
                     <i class="fa-solid fa-2"></i>
-                    <h3>فئتان للتداول</h3>
-                    <p>فئة الصغار وفئة الكبار بحدود وأسعار محددة</p>
+                    <h3>حدود واضحة</h3>
+                    <p>أحجام صفقات محددة لكل فئة مع مرونة في التنفيذ</p>
                 </div>
                 <div class="rule-card">
                     <i class="fa-solid fa-3"></i>
-                    <h3>ربح متوازن</h3>
-                    <p>نسبة ربح 5% تضمن استمرارية السوق</p>
+                    <h3>مرونة اختيارية</h3>
+                    <p>حرية التاجر في اختيار السعر ضمن الحدود</p>
                 </div>
             </div>
         </div>
@@ -363,19 +441,19 @@
                 <div class="card-header small">
                     <h2>فئة الصغار</h2>
                     <i class="fa-solid fa-user-group"></i>
-                    <div class="badge">مخصص للصفقات الصغيرة والمتوسطة</div>
+                    <div class="badge">صفقات من 150 إلى 5000 أوقية</div>
                 </div>
                 
                 <div class="price-details">
                     <div class="price-box">
                         <h3>سعر الشراء (التاجر يشتري)</h3>
                         <div class="value">41.00 أوقية</div>
-                        <div class="note">لكل USDT</div>
+                        <div class="note">أعلى سعر مسموح (أقل منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                     <div class="price-box">
                         <h3>سعر البيع (التاجر يبيع)</h3>
                         <div class="value">42.25 أوقية</div>
-                        <div class="note">لكل USDT</div>
+                        <div class="note">أقل سعر مسموح (أعلى منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                 </div>
                 
@@ -383,26 +461,25 @@
                     <div class="limit-box">
                         <h3>الحد الأدنى للصفقة</h3>
                         <div class="value">150 أوقية</div>
+                        <div class="note">(أكثر منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                     <div class="limit-box">
                         <h3>الحد الأعلى للصفقة</h3>
                         <div class="value">5,000 أوقية</div>
+                        <div class="note">(أقل منه حسب المبلغ <span class="flexibility">مقبول</span>)</div>
                     </div>
                 </div>
                 
                 <div class="example">
-                    <h3><i class="fa-solid fa-calculator"></i> مثال توضيحي</h3>
-                    <p>صفقة بيع للتاجر بقيمة 1,000 USDT:</p>
-                    <div class="calc">
-                        الإيراد = 1,000 × 41.00 = 41,000 أوقية
-                    </div>
+                    <h3><i class="fa-solid fa-lightbulb"></i> أمثلة على المرونة</h3>
                     
-                    <p>صفقة شراء للتاجر بقيمة 3,000 أوقية:</p>
-                    <div class="calc">
-                        الكمية = 3,000 ÷ 42.25 ≈ 71.00 USDT
-                    </div>
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> تاجر صغير يمكنه <strong>شراء USDT</strong> بسعر 40.50 أوقية (أقل من 41.00)</p>
                     
-                    <p>هامش الربح: 5% لكل صفقة</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> تاجر صغير يمكنه <strong>بيع USDT</strong> بسعر 42.50 أوقية (أعلى من 42.25)</p>
+                    
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> صفقة بقيمة 1000 أوقية <strong>مقبولة</strong> (أعلى من 150 وأقل من 5000)</p>
+                    
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> صفقة بقيمة 4999 أوقية <strong>مقبولة</strong> (ضمن الحدود)</p>
                 </div>
             </div>
             
@@ -411,19 +488,19 @@
                 <div class="card-header large">
                     <h2>فئة الكبار</h2>
                     <i class="fa-solid fa-building"></i>
-                    <div class="badge">مخصص للصفقات الكبيرة</div>
+                    <div class="badge">صفقات من 5000 أوقية فما فوق</div>
                 </div>
                 
                 <div class="price-details">
                     <div class="price-box">
                         <h3>سعر الشراء (التاجر يشتري)</h3>
                         <div class="value">40.50 أوقية</div>
-                        <div class="note">لكل USDT</div>
+                        <div class="note">أعلى سعر مسموح (أقل منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                     <div class="price-box">
                         <h3>سعر البيع (التاجر يبيع)</h3>
                         <div class="value">41.75 أوقية</div>
-                        <div class="note">لكل USDT</div>
+                        <div class="note">أقل سعر مسموح (أعلى منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                 </div>
                 
@@ -431,55 +508,54 @@
                     <div class="limit-box">
                         <h3>الحد الأدنى للصفقة</h3>
                         <div class="value">5,000 أوقية</div>
+                        <div class="note">(أكثر منه <span class="flexibility">مقبول</span>)</div>
                     </div>
                     <div class="limit-box">
                         <h3>الحد الأعلى للصفقة</h3>
                         <div class="value">لا نهائي</div>
+                        <div class="note">(أي مبلغ كبير <span class="flexibility">مقبول</span>)</div>
                     </div>
                 </div>
                 
                 <div class="example">
-                    <h3><i class="fa-solid fa-calculator"></i> مثال توضيحي</h3>
-                    <p>صفقة بيع للتاجر بقيمة 10,000 USDT:</p>
-                    <div class="calc">
-                        الإيراد = 10,000 × 40.50 = 405,000 أوقية
-                    </div>
+                    <h3><i class="fa-solid fa-lightbulb"></i> أمثلة على المرونة</h3>
                     
-                    <p>صفقة شراء للتاجر بقيمة 100,000 أوقية:</p>
-                    <div class="calc">
-                        الكمية = 100,000 ÷ 41.75 ≈ 2,395.21 USDT
-                    </div>
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> تاجر كبير يمكنه <strong>شراء USDT</strong> بسعر 40.00 أوقية (أقل من 40.50)</p>
                     
-                    <p>هامش الربح: 5% لكل صفقة</p>
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> تاجر كبير يمكنه <strong>بيع USDT</strong> بسعر 42.00 أوقية (أعلى من 41.75)</p>
+                    
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> صفقة بقيمة 5001 أوقية <strong>مقبولة</strong> (أعلى من الحد الأدنى)</p>
+                    
+                    <p><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> صفقة بقيمة 100,000 أوقية <strong>مقبولة</strong> (ضمن الحدود)</p>
                 </div>
             </div>
         </div>
         
         <div class="system-rules">
-            <h2><i class="fa-solid fa-file-contract"></i> شروط وقوانين النظام</h2>
+            <h2><i class="fa-solid fa-file-contract"></i> قواعد النظام الأساسية</h2>
             <div class="rules-grid">
                 <div class="rule-card">
-                    <i class="fa-solid fa-ban"></i>
-                    <h3>الالتزام بالأسعار</h3>
-                    <p>يمنع على التجار المخالفة للأسعار المحددة</p>
+                    <i class="fa-solid fa-arrow-up-wide-short"></i>
+                    <h3>الحدود الدنيا</h3>
+                    <p>يجب ألا تقل الصفقة عن الحد الأدنى المحدد لكل فئة</p>
+                </div>
+                <div class="rule-card">
+                    <i class="fa-solid fa-arrow-down-short-wide"></i>
+                    <h3>الحدود القصوى</h3>
+                    <p>للصغار: حتى 5000 أوقية، للكبار: بلا حدود</p>
                 </div>
                 <div class="rule-card">
                     <i class="fa-solid fa-scale-balanced"></i>
-                    <h3>العدالة في التصنيف</h3>
-                    <p>يتم تحديد الفئة حسب حجم الصفقة فقط</p>
-                </div>
-                <div class="rule-card">
-                    <i class="fa-solid fa-sync-alt"></i>
-                    <h3>تحديثات دورية</h3>
-                    <p>مراجعة الأسعار كل أسبوعين حسب السوق</p>
+                    <h3>المرونة في الأسعار</h3>
+                    <p>السماح بأسعار أفضل للتاجر ضمن الإطار العام</p>
                 </div>
             </div>
         </div>
         
         <footer>
             <p>© 2023 نظام توحيد أسعار تداول USDT في السوق الموريتاني - جميع الحقوق محفوظة</p>
-            <p>هذا الموقع للتوضيح فقط وليس منصة تداول - يهدف إلى توحيد الأسعار ومنع التضارب</p>
+            <p>هذا الموقع للتوضيح فقط - يهدف إلى توحيد الأسعار مع السماح بمرونة في التنفيذ</p>
         </footer>
     </div>
 </body>
-                        </html>
+</html>
