@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تبادل USDT - موريتانيا</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(44, 62, 80, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--primary);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        header p {
+            color: #ccc;
+            font-size: 16px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .radio-option {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .radio-option.selected {
+            background: rgba(52, 152, 219, 0.3);
+            border: 2px solid var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .radio-option h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .radio-option p {
+            color: #ddd;
+            font-size: 14px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-size: 18px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-card {
+            background: rgba(39, 174, 96, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .result-header h2 {
+            font-size: 24px;
+            color: #fff;
+        }
+        
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .detail-box h4 {
+            color: #ccc;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .detail-box p {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .price-highlight {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--warning);
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        
+        .summary {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .summary p {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .summary .value {
+            font-weight: 600;
+            color: var(--warning);
+        }
+        
+        .plan-indicator {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .small-plan {
+            background: var(--success);
+        }
+        
+        .large-plan {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 600px) {
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .result-details {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>منصة تبادل USDT مقابل الأوقية الموريتانية</h1>
+            <p>أسعار عادلة - معاملات آمنة - حدود مرنة</p>
+        </header>
+        
+        <div class="card">
+            <div class="form-group">
+                <label>نوع العملية:</label>
+                <div class="radio-group">
+                    <div class="radio-option" id="buyOption" onclick="selectOption('buy')">
+                        <h3>شراء USDT</h3>
+                        <p>(أدفع الأوقية، أحصل على USDT)</p>
+                    </div>
+                    <div class="radio-option" id="sellOption" onclick="selectOption('sell')">
+                        <h3>بيع USDT</h3>
+                        <p>(أدفع USDT، أحصل على الأوقية)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label id="amountLabel">المبلغ المتاح (بالأوقية الموريتانية):</label>
+                <input type="number" id="amountInput" placeholder="أدخل المبلغ المتاح" min="0" step="any">
+            </div>
+            
+            <button onclick="calculateTransaction()">احسب المعاملة</button>
+        </div>
+        
+        <div class="result-card" id="resultCard">
+            <div class="result-header">
+                <h2>تفاصيل المعاملة</h2>
+                <div id="planIndicator"></div>
+            </div>
+            
+            <div class="result-details">
+                <div class="detail-box">
+                    <h4>الحد الأدنى</h4>
+                    <p id="minLimit">150 أوقية</p>
+                </div>
+                
+                <div class="detail-box">
+                    <h4>الحد الأعلى</h4>
+                    <p id="maxLimit">5,000 أوقية</p>
+                </div>
+                
+                <div class="detail-box">
+                    <h4>نوع الخطة</h4>
+                    <p id="planType">صغار</p>
+                </div>
+            </div>
+            
+            <div class="price-highlight">
+                <div>السعر المطبق:</div>
+                <div id="appliedPrice">42.25 أوقية/USDT</div>
+            </div>
+            
+            <div class="summary">
+                <p>
+                    <span>المبلغ المدخل:</span>
+                    <span class="value" id="enteredAmount">0 أوقية</span>
+                </p>
+                <p>
+                    <span>الكمية المتلقاة:</span>
+                    <span class="value" id="receivedAmount">0 USDT</span>
+                </p>
+                <p>
+                    <span>الربح المتوقع:</span>
+                    <span class="value" id="profitAmount">0 أوقية</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // تحديد العملية (بيع/شراء)
+        let transactionType = 'buy';
+        
+        function selectOption(type) {
+            transactionType = type;
+            
+            // تحديث الواجهة
+            document.getElementById('buyOption').classList.remove('selected');
+            document.getElementById('sellOption').classList.remove('selected');
+            document.getElementById(type + 'Option').classList.add('selected');
+            
+            // تحديث نص الحقل
+            const label = document.getElementById('amountLabel');
+            if (type === 'buy') {
+                label.textContent = 'المبلغ المتاح (بالأوقية الموريتانية):';
+                document.getElementById('amountInput').placeholder = 'أدخل المبلغ بالأوقية';
+            } else {
+                label.textContent = 'المبلغ المتاح (بـ USDT):';
+                document.getElementById('amountInput').placeholder = 'أدخل المبلغ بــ USDT';
+            }
+        }
+        
+        // الأسعار والحدود
+        const prices = {
+            small: {
+                buy: 42.25,   // سعر البيع للتاجر (العميل يشتري USDT)
+                sell: 41.00   // سعر الشراء للتاجر (العميل يبيع USDT)
+            },
+            large: {
+                buy: 41.75,   // سعر البيع للتاجر
+                sell: 40.50   // سعر الشراء للتاجر
+            }
+        };
+        
+        const limits = {
+            small: { min: 150, max: 5000 },
+            large: { min: 5000, max: Infinity }
+        };
+        
+        // حساب المعاملة
+        function calculateTransaction() {
+            const amountInput = document.getElementById('amountInput');
+            const resultCard = document.getElementById('resultCard');
+            const amount = parseFloat(amountInput.value);
+            
+            if (isNaN(amount) || amount <= 0) {
+                alert('الرجاء إدخال مبلغ صحيح');
+                return;
+            }
+            
+            // تحديد الخطة (صغار/كبار)
+            let plan, planName;
+            if (transactionType === 'buy') {
+                // عملية شراء USDT (بالأوقية)
+                if (amount >= limits.small.min && amount <= limits.small.max) {
+                    plan = 'small';
+                    planName = 'صغار';
+                } else if (amount >= limits.large.min) {
+                    plan = 'large';
+                    planName = 'كبار';
+                } else {
+                    alert(`المبلغ أقل من الحد الأدنى (${limits.small.min} أوقية)`);
+                    return;
+                }
+            } else {
+                // عملية بيع USDT (بالـ USDT)
+                if (amount >= (limits.small.min / prices.small.sell) && 
+                    amount <= (limits.small.max / prices.small.sell)) {
+                    plan = 'small';
+                    planName = 'صغار';
+                } else if (amount >= (limits.large.min / prices.large.sell)) {
+                    plan = 'large';
+                    planName = 'كبار';
+                } else {
+                    const minAmount = (limits.small.min / prices.small.sell).toFixed(2);
+                    alert(`المبلغ أقل من الحد الأدنى (${minAmount} USDT)`);
+                    return;
+                }
+            }
+            
+            // تحديث واجهة النتائج
+            const minLimit = plan === 'small' ? limits.small.min : limits.large.min;
+            const maxLimit = plan === 'small' ? limits.small.max : limits.large.max;
+            
+            document.getElementById('minLimit').textContent = 
+                minLimit.toLocaleString() + (plan === 'small' ? ' أوقية' : ' أوقية');
+            
+            document.getElementById('maxLimit').textContent = 
+                maxLimit === Infinity ? 'لا نهائي' : maxLimit.toLocaleString() + ' أوقية';
+            
+            document.getElementById('planType').textContent = planName;
+            
+            // عرض السعر المطبق
+            const appliedPrice = transactionType === 'buy' ? 
+                prices[plan].buy : prices[plan].sell;
+            
+            document.getElementById('appliedPrice').textContent = 
+                appliedPrice.toFixed(2) + ' أوقية/USDT';
+            
+            // تحديث المؤشر
+            const planIndicator = document.getElementById('planIndicator');
+            planIndicator.innerHTML = `<span class="plan-indicator ${plan}-plan">خطة ${planName}</span>`;
+            
+            // حساب الكميات
+            let enteredAmount, receivedAmount;
+            if (transactionType === 'buy') {
+                enteredAmount = amount;
+                receivedAmount = amount / appliedPrice;
+            } else {
+                enteredAmount = amount;
+                receivedAmount = amount * appliedPrice;
+            }
+            
+            // حساب الربح المتوقع (5% للتاجر)
+            const profitAmount = enteredAmount * 0.05;
+            
+            // تحديث الملخص
+            document.getElementById('enteredAmount').textContent = 
+                transactionType === 'buy' ? 
+                enteredAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' أوقية' :
+                enteredAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' USDT';
+            
+            document.getElementById('receivedAmount').textContent = 
+                transactionType === 'buy' ? 
+                receivedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' USDT' :
+                receivedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' أوقية';
+            
+            document.getElementById('profitAmount').textContent = 
+                profitAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' أوقية';
+            
+            // إظهار نتائج المعاملة
+            resultCard.style.display = 'block';
+        }
+        
+        // التهيئة الأولية
+        window.onload = function() {
+            selectOption('buy');
+        };
+    </script>
+</body>
+</html>
